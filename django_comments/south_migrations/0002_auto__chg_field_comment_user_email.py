@@ -63,7 +63,6 @@ class Migration(SchemaMigration):
             'is_public': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'is_removed': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'object_pk': ('django.db.models.fields.TextField', [], {}),
-            'site': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['sites.Site']"}),
             'submit_date': ('django.db.models.fields.DateTimeField', [], {'default': 'None'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'comment_comments'", 'null': 'True', 'to': u"orm['auth.User']"}),
             'user_email': ('django.db.models.fields.EmailField', [], {'max_length': '254', 'blank': 'True'}),
@@ -77,12 +76,6 @@ class Migration(SchemaMigration):
             'flag_date': ('django.db.models.fields.DateTimeField', [], {'default': 'None'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'comment_flags'", 'to': u"orm['auth.User']"})
-        },
-        u'sites.site': {
-            'Meta': {'ordering': "(u'domain',)", 'object_name': 'Site', 'db_table': "u'django_site'"},
-            'domain': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '50'})
         }
     }
 

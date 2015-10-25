@@ -23,7 +23,7 @@ class CommentsAdmin(admin.ModelAdmin):
     fieldsets = (
         (
             None,
-            {'fields': ('content_type', 'object_pk', 'site')}
+            {'fields': ('content_type', 'object_pk')}
         ),
         (
             _('Content'),
@@ -36,7 +36,7 @@ class CommentsAdmin(admin.ModelAdmin):
     )
 
     list_display = ('name', 'content_type', 'object_pk', 'ip_address', 'submit_date', 'is_public', 'is_removed')
-    list_filter = ('submit_date', 'site', 'is_public', 'is_removed')
+    list_filter = ('submit_date', 'is_public', 'is_removed')
     date_hierarchy = 'submit_date'
     ordering = ('-submit_date',)
     raw_id_fields = ('user',)

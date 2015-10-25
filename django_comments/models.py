@@ -6,7 +6,6 @@ except ImportError:
     from django.contrib.contenttypes.generic import GenericForeignKey
 
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.sites.models import Site
 from django.core import urlresolvers
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -30,9 +29,6 @@ class BaseCommentAbstractModel(models.Model):
                                      related_name="content_type_set_for_%(class)s")
     object_pk = models.TextField(_('object ID'))
     content_object = GenericForeignKey(ct_field="content_type", fk_field="object_pk")
-
-    # Metadata about the comment
-    site = models.ForeignKey(Site)
 
     class Meta:
         abstract = True
@@ -166,7 +162,6 @@ class Comment(BaseCommentAbstractModel):
             'user': self.user or self.name,
             'date': self.submit_date,
             'comment': self.comment,
-            'domain': self.site.domain,
             'url': self.get_absolute_url()
         }
         return _('Posted by %(user)s at %(date)s\n\n%(comment)s\n\nhttp://%(domain)s%(url)s') % d

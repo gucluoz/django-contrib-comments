@@ -3,28 +3,22 @@ from django.utils.translation import ugettext as _
 
 import django_comments
 
-from .compat import get_current_site
-
-
 class LatestCommentFeed(Feed):
-    """Feed of latest comments on the current site."""
 
     def __call__(self, request, *args, **kwargs):
-        self.site = get_current_site(request)
         return super(LatestCommentFeed, self).__call__(request, *args, **kwargs)
 
     def title(self):
-        return _("%(site_name)s comments") % dict(site_name=self.site.name)
+        return _("Comments") 
 
     def link(self):
-        return "http://%s/" % (self.site.domain)
+        return "#" 
 
     def description(self):
-        return _("Latest comments on %(site_name)s") % dict(site_name=self.site.name)
+        return "Latest comments"
 
     def items(self):
         qs = django_comments.get_model().objects.filter(
-            site__pk=self.site.pk,
             is_public=True,
             is_removed=False,
         )

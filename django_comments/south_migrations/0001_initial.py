@@ -19,7 +19,6 @@ class Migration(SchemaMigration):
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('content_type', self.gf('django.db.models.fields.related.ForeignKey')(related_name='content_type_set_for_comment', to=orm['contenttypes.ContentType'])),
             ('object_pk', self.gf('django.db.models.fields.TextField')()),
-            ('site', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['sites.Site'])),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name='comment_comments', null=True, to=orm[user_orm_label])),
             ('user_name', self.gf('django.db.models.fields.CharField')(max_length=50, blank=True)),
             ('user_email', self.gf('django.db.models.fields.EmailField')(max_length=75, blank=True)),
@@ -91,7 +90,6 @@ class Migration(SchemaMigration):
             'is_public': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'is_removed': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'object_pk': ('django.db.models.fields.TextField', [], {}),
-            'site': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['sites.Site']"}),
             'submit_date': ('django.db.models.fields.DateTimeField', [], {'default': 'None'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'comment_comments'", 'null': 'True', 'to': u"orm['{}']".format(user_orm_label)}),
             'user_email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'blank': 'True'}),
@@ -105,12 +103,6 @@ class Migration(SchemaMigration):
             'flag_date': ('django.db.models.fields.DateTimeField', [], {'default': 'None'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'comment_flags'", 'to': u"orm['{}']".format(user_orm_label)})
-        },
-        u'sites.site': {
-            'Meta': {'ordering': "(u'domain',)", 'object_name': 'Site', 'db_table': "u'django_site'"},
-            'domain': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '50'})
         }
     }
 
